@@ -10,7 +10,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/")
 	public String greeting() {
-		return "hi dear, Welcome to spring";
+		return "HELLO, Welcome to spring";
 	}
 	
 	@GetMapping(value = "/{name}")
