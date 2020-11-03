@@ -2,6 +2,8 @@ package ly.taha.springboot.todos;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,20 +26,17 @@ public class TodoController {
 	}
 		
 	@GetMapping("/{id}")
-	public Todo getTodoById(@PathVariable int id) {
+	public Todo getTodoById(@PathVariable String id) {
 		return todoService.getById(id);
 	}
 	
 	@PostMapping(value = {"","/"})
-	public Todo createNewTodo(@RequestBody Todo todo) {
-		if (todoService.save(todo)) {
-		return todo;
-		}
-		return null;
+	public Todo createNewTodo(@RequestBody @Valid Todo todo) {
+		return todoService.save(todo);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteTodo(@PathVariable int id) {
+	public void deleteTodo(@PathVariable String id) {
 		todoService.delete(id);
 	}
 }	
